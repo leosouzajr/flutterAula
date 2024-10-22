@@ -1,0 +1,73 @@
+import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+
+class TelaHome extends StatefulWidget {
+  const TelaHome({super.key});
+
+  @override
+  State<TelaHome> createState() => _TelaHomeState();
+}
+
+class _TelaHomeState extends State<TelaHome> {
+  TextEditingController controlerPesquisaCarro = TextEditingController();
+
+  String campoFinal = "";
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        leading: Icon(Icons.home),
+        //centerTitle: true,
+        //title: Text("home"),
+        backgroundColor: Colors.blue,
+        actions: [
+          IconButton(
+            iconSize: 20,
+            icon: Icon(Icons.account_circle_rounded),
+            onPressed: () {},
+          )
+        ],
+      ),
+      body: Column(
+        children: [
+          Container(
+            height: 40,
+            width: 800,
+            color: Colors.grey,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextField(
+                  controller: controlerPesquisaCarro,
+                  decoration: InputDecoration(
+                    hintText: "digite seu nome",
+                  )),
+            ),
+          ),
+          ElevatedButton(
+              onPressed: () {
+                _cliqueDoBotao();
+              },
+              child: Text("clique")),
+          Text(campoFinal),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Icon(
+                Icons.remove_red_eye,
+                size: 14,
+              ),
+              Text("ver mais"),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  void _cliqueDoBotao() {
+    setState(() {
+      campoFinal = controlerPesquisaCarro.text;
+    });
+  }
+}
